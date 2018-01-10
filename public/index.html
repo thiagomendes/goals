@@ -1,1 +1,30 @@
-index.html
+<!DOCTYPE html>
+<html lang="en" ng-app="goals">
+
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Goals</title>
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/goals.css">
+    <script src="js/lib/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-route.min.js"></script>
+    <script src="js/goals.js"></script>
+    <script src="js/services/token-interceptor.js"></script>
+    <script src="js/controllers/login-controller.js"></script>
+    <script src="js/controllers/home-controller.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
+
+</body>
+
+</html>

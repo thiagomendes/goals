@@ -6,6 +6,7 @@ var secret = 'atireiopaunogato';
 var xAccessToken = 'x-access-token';
 
 api.authenticate = function (req, res) {
+    console.log('auth')
     model.findOne({ email: req.body.email, password: req.body.password })
         .then(function (user) {
             if (!user) {
