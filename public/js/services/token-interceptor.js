@@ -30,7 +30,7 @@ angular.module('goals')
 
         interceptor.responseError = function (rejection) {
 
-            if (rejection && rejection.status == 401) {
+            if (rejection && (rejection.status == 401 || rejection.status == 403)) {
                 console.log('Removendo token do session storage');
                 delete $window.sessionStorage.token;
                 $location.path('/app/login');

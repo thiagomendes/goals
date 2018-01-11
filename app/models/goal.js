@@ -5,7 +5,7 @@ var schema = mongoose.Schema({
         type: String,
         require: true
     },
-    totaCost: {
+    totalCost: {
         type: Number,
         require: true
     },

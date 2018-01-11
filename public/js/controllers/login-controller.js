@@ -1,5 +1,5 @@
 angular.module('goals')
-    .controller('LoginController', function ($scope, $http, $location) {
+    .controller('LoginController', function ($scope, $http, $location, $window) {
 
         $scope.user = {};
         $scope.message = '';
@@ -16,5 +16,10 @@ angular.module('goals')
                 }
             });
         };
+
+        $scope.logout = function () {
+            delete $window.sessionStorage.token;
+            $location.path('/app/login');
+        }
 
     });

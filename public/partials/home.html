@@ -1,1 +1,65 @@
-Ola;
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Goals</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item" ng-controller="LoginController">
+                <a class="nav-link" href="#" ng-click="logout()">Sign out</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input ng-model="filterParam" ng-model-options="{debounce: 500}" class="form-control mr-sm-2" type="text" placeholder="Find a goal"
+                aria-label="Search">
+        </form>
+    </div>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template" ng-show="!goals.length">
+        <h1>Welcome</h1>
+        <p class="lead">You have no goal so far,
+            <br/>Create your first now</p>
+        <a href="/app/goals/create" class="btn btn-success">Create Goal</a>
+    </div>
+
+    <div class="goals-template" ng-show="goals.length > 0">
+        <h2>Your Goals</h2>
+        <p class="text-right">
+            <a href="/app/goals/create" class="btn btn-success">Create a New Goal</a>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Create Date</th>
+                    <th>Target Date</th>
+                    <th>Total Cost</th>
+                    <th>More Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="goal in goals | filter: filterParam">
+                    <td>{{goal.name}}</td>
+                    <td>{{goal.createDate | date : format : timezone }}</td>
+                    <td>{{goal.targetDate | date : format : timezone }}</td>
+                    <td>{{goal.totalCost | currency : 'R$ '}}</td>
+                    <td class="text-center">
+                        <a href="/app/goals/{{goal._id}}">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
