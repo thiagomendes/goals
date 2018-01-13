@@ -4,10 +4,10 @@
     <div class="goals-template">
         <h2>Creating a Goal</h2>
 
-        <form class="mt-4">
+        <form class="mt-4" ng-submit="submit()" ng-show="!isSuccess">
             <div class="form-group">
                 <label for="goal-name">Name</label>
-                <input type="text" class="form-control" id="goal-name" placeholder="Goal Name">
+                <input ng-model="goal.name" type="text" class="form-control" id="goal-name" placeholder="Goal Name" required autofocus>
             </div>
             <div class="form-group">
                 <label for="target-date">Target Date</label>
@@ -19,7 +19,8 @@
                             </span>
                         </div>
                     </div>
-                    <input type="text" class="form-control" id="target-date" placeholder="Target Date For Achievement Of Goal">
+                    <input ng-model="goal.targetDate" type="text" class="form-control" id="target-date" placeholder="Desired Date For Achieving The Goal"
+                        required>
                 </div>
             </div>
             <div class="form-group">
@@ -32,7 +33,7 @@
                             </span>
                         </div>
                     </div>
-                    <input ng-model="goal.totalCost" type="text" class="form-control" id="total-cost" placeholder="Total Cost Of This Goal">
+                    <input ng-model="goal.totalCost" type="text" class="form-control" id="total-cost" placeholder="Total Cost Of This Goal" required>
                 </div>
             </div>
             <ul class="nav justify-content-end my-4">
@@ -47,6 +48,25 @@
 
     </div>
 </main>
+<div id="response">
+    <div id="response-error" ng-show="isError">
+        <div class="alert alert-danger text-center">
+            <strong>Error:</strong> {{message}}
+        </div>
+    </div>
+    <div id="response-success" ng-show="isSuccess">
+        <div class="alert alert-success">
+            <strong>Success:</strong> {{message}}
+        </div>
+        <div>
+            <p class="mx-5 my-5">
+                <strong>Congratulations</strong>, you just create a new goal, now you can
+                <a href="/app/home">go to the home page</a> or
+                <a href="/app/goals/{{goal._id}}/budgets/create">create a new budget</a> for this goal.
+            </p>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         //masking targer date input

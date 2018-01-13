@@ -44,7 +44,7 @@
                     <th>Create Date</th>
                     <th>Target Date</th>
                     <th>Total Cost</th>
-                    <th>More Information</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -53,8 +53,8 @@
                     <td>{{goal.createDate | date : format : timezone }}</td>
                     <td>{{goal.targetDate | date : format : timezone }}</td>
                     <td>{{goal.totalCost | currency : 'R$ '}}</td>
-                    <td class="text-center ">
-                        <a href="/app/goals/{{goal._id}} ">
+                    <td>
+                        <a href="/app/goals/{{goal._id}}">
                             <i class="fa fa-plus " aria-hidden="true "></i>
                         </a>
                     </td>
