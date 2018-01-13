@@ -9,11 +9,35 @@
     </div>
 
     <div class="goals-template" ng-show="goals.length > 0">
+
         <h2>Your Goals</h2>
-        <p class="text-right">
-            <a href="/app/goals/create" class="btn btn-success">Create a New Goal</a>
-        </p>
-        <table class="table table-striped">
+
+        <div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <div class="form-group mt-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <input ng-model="filterParam" ng-model-options="{debounce: 500}" class="form-control" type="text" placeholder="Find a Goal"
+                                aria-label="Search">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav nav-tabs justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="/app/goals/create">Create a New Goal</a>
+                </li>
+            </ul>
+        </div>
+
+        <table class="table table-striped ">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -24,14 +48,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="goal in goals | filter: filterParam">
+                <tr ng-repeat="goal in goals | filter: filterParam ">
                     <td>{{goal.name}}</td>
                     <td>{{goal.createDate | date : format : timezone }}</td>
                     <td>{{goal.targetDate | date : format : timezone }}</td>
                     <td>{{goal.totalCost | currency : 'R$ '}}</td>
-                    <td class="text-center">
-                        <a href="/app/goals/{{goal._id}}">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                    <td class="text-center ">
+                        <a href="/app/goals/{{goal._id}} ">
+                            <i class="fa fa-plus " aria-hidden="true "></i>
                         </a>
                     </td>
                 </tr>

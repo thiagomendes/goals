@@ -1,0 +1,62 @@
+<menu></menu>
+<main role="main" class="container">
+
+    <div class="goals-template">
+        <h2>Creating a Goal</h2>
+
+        <form class="mt-4">
+            <div class="form-group">
+                <label for="goal-name">Name</label>
+                <input type="text" class="form-control" id="goal-name" placeholder="Goal Name">
+            </div>
+            <div class="form-group">
+                <label for="target-date">Target Date</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" id="target-date" placeholder="Target Date For Achievement Of Goal">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="total-cost">Total Cost</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="input-group-addon">
+                                <i class="fa fa-money" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <input ng-model="goal.totalCost" type="text" class="form-control" id="total-cost" placeholder="Total Cost Of This Goal">
+                </div>
+            </div>
+            <ul class="nav justify-content-end my-4">
+                <li class="nav-item">
+                    <button ng-click="cancel()" type="button" class="btn btn-secondary mx-2">Cancel</button>
+                </li>
+                <li class="nav-item">
+                    <button type="submit" class="btn btn-primary mx-2">Create Goal</button>
+                </li>
+            </ul>
+        </form>
+
+    </div>
+</main>
+<script>
+    $(document).ready(function () {
+        //masking targer date input
+        $('#target-date').datepicker({
+            orientation: "bottom auto",
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        //masking total cost input
+        $('#total-cost').mask("#.##0,00", { reverse: true });
+    });
+</script>

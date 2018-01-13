@@ -14,6 +14,11 @@ angular.module('goals', ['ngRoute'])
             controller: 'HomeController'
         });
 
+        $routeProvider.when('/app/goals/create', {
+            templateUrl: 'partials/create-goal.html',
+            controller: 'CreateGoalController'
+        });
+
         $routeProvider.when('/app/404', {
             templateUrl: 'partials/404.html',
             controller: 'HomeController'
