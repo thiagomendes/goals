@@ -1,0 +1,87 @@
+<menu></menu>
+<main role="main" class="container">
+
+    <div class="goals-template">
+        <h2>{{goal.name}}</h2>
+
+        <div class="my-5 mx-5">
+            <div class="row">
+                <div class="col">
+                    <h3>General Information</h3>
+                    <table class="table">
+                        <tr>
+                            <th scope="row">Create Date</th>
+                            <td>{{goal.createDate | date : format : timezone }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Target Date</th>
+                            <td>{{goal.targetDate | date : format : timezone }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Total Cost</th>
+                            <td>{{goal.totalCost | currency : 'R$ '}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col">
+                    <h3>Budget Information</h3>
+                    <table class="table">
+                        <tr>
+                            <th scope="row">Total Expected Budget</th>
+                            <td>{{goal.expectedBudget | currency : 'R$ '}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Total Cash Budget</th>
+                            <td>{{goal.cashBudget | currency : 'R$ '}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Total Budget</th>
+                            <td>{{goal.totalBudget | currency : 'R$ '}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pending Budget</th>
+                            <td>{{goal.pendingBudget | currency : 'R$ '}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3>Goal Status</h3>
+                    <div class="progress" style="height: 30px;">
+                        <div class="progress-bar" role="progressbar" style="width: {{goal.percentBar}}%;" aria-valuenow="{{goal.percentBar}}" aria-valuemin="0"
+                            aria-valuemax="100">{{goal.percentBar}}%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-5 mx-5">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="/app/goals/create">
+                        <i class="fa fa-plus mr-1" aria-hidden="true" />Create a New Budget
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/app/goals/create">
+                        <i class="fa fa-pencil mr-1" aria-hidden="true" />Edit This Goal
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/app/goals/create">
+                        <i class="fa fa-trash-o mr-1" aria-hidden="true" />Remove This Goal
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+</main>
+<div id="response">
+    <div id="response-error" ng-show="isError">
+        <div class="alert alert-danger text-center">
+            <strong>Error:</strong> {{message}}
+        </div>
+    </div>
+</div>

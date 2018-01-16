@@ -14,7 +14,7 @@ var schema = mongoose.Schema({
         require: true
     },
     status: {
-        type: String,
+        type: Number,
         require: true
     },
     goalId: {
