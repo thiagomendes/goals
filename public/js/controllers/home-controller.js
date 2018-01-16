@@ -1,7 +1,7 @@
 angular.module('goals')
     .controller('HomeController', function ($scope, $http, $location) {
 
-        $scope.goals = {};
+        $scope.goals = [];
         $scope.message = '';
         $filterParam = '';
 

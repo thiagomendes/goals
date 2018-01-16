@@ -5,6 +5,35 @@
         <h2>{{goal.name}}</h2>
 
         <div class="my-5 mx-5">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="/app/goals/create">
+                        <i class="fa fa-plus mr-1" aria-hidden="true" />Create a New Budget
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/app/goals/create">
+                        <i class="fa fa-pencil mr-1" aria-hidden="true" />Edit This Goal
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/app/goals/create">
+                        <i class="fa fa-trash-o mr-1" aria-hidden="true" />Remove This Goal
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="my-5 mx-5">
+            <div class="row mb-5">
+                <div class="col">
+                    <h3>Goal Status</h3>
+                    <div class="progress" style="height: 30px;">
+                        <div class="progress-bar" role="progressbar" style="width: {{goal.percentBar}}%;" aria-valuenow="{{goal.percentBar}}" aria-valuemin="0"
+                            aria-valuemax="100">{{goal.percentBar}}%</div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col">
                     <h3>General Information</h3>
@@ -47,35 +76,40 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h3>Goal Status</h3>
-                    <div class="progress" style="height: 30px;">
-                        <div class="progress-bar" role="progressbar" style="width: {{goal.percentBar}}%;" aria-valuenow="{{goal.percentBar}}" aria-valuemin="0"
-                            aria-valuemax="100">{{goal.percentBar}}%</div>
-                    </div>
+                    <h3>Budgets</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Expected Date</th>
+                                <th>Status</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="budget in budgets">
+                                <td>{{budget.description}}</td>
+                                <td>{{budget.amount | currency : 'R$ '}}</td>
+                                <td>{{budget.expectedDate | date : format : timezone }}</td>
+                                <td>{{budget.status == 0 ? 'Expected' : 'Received'}}</td>
+                                <td>
+                                    <a class="nav-link" href="/app/goals/{{goal._id}}/budgets/{{budget._id}}/edit">
+                                        <i class="fa fa-pencil mr-1" aria-hidden="true" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="nav-link" href="/app/goals/{{goal._id}}/budgets/{{budget._id}}/remove">
+                                        <i class="fa fa-trash-o mr-1" aria-hidden="true" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="my-5 mx-5">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link" href="/app/goals/create">
-                        <i class="fa fa-plus mr-1" aria-hidden="true" />Create a New Budget
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/app/goals/create">
-                        <i class="fa fa-pencil mr-1" aria-hidden="true" />Edit This Goal
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/app/goals/create">
-                        <i class="fa fa-trash-o mr-1" aria-hidden="true" />Remove This Goal
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-
     </div>
 </main>
 <div id="response">
