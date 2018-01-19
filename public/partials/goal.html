@@ -1,5 +1,5 @@
 <menu></menu>
-<main role="main" class="container">
+<main role="main" class="container" ng-show="!isError && !removed">
 
     <div class="goals-template">
         <h2>{{goal.name}}</h2>
@@ -7,17 +7,17 @@
         <div class="my-5 mx-5">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" href="/app/goals/create">
+                    <a class="nav-link" href="/app/goals/{{goal._id}}/budgets/create">
                         <i class="fa fa-plus mr-1" aria-hidden="true" />Create a New Budget
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/app/goals/create">
+                    <a class="nav-link" href="/app/goals/{{goal._id}}/edit">
                         <i class="fa fa-pencil mr-1" aria-hidden="true" />Edit This Goal
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/app/goals/create">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-remove-goal">
                         <i class="fa fa-trash-o mr-1" aria-hidden="true" />Remove This Goal
                     </a>
                 </li>
@@ -100,7 +100,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="nav-link" href="/app/goals/{{goal._id}}/budgets/{{budget._id}}/remove">
+                                    <a class="nav-link" href="#" ng-click="setSelectedBudget(budget)" data-toggle="modal" data-target="#modal-remove-budget">
                                         <i class="fa fa-trash-o mr-1" aria-hidden="true" />
                                     </a>
                                 </td>
@@ -112,10 +112,59 @@
         </div>
     </div>
 </main>
-<div id="response">
+<div class="modal fade" id="modal-remove-goal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">{{goal.name}} will be removed</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" ng-click="removeGoal()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-remove-budget" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">The budget {{selectedBudget.description}} will be removed</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" ng-click="removeBudget()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="response" class="my-5 mx-5">
     <div id="response-error" ng-show="isError">
         <div class="alert alert-danger text-center">
             <strong>Error:</strong> {{message}}
+        </div>
+    </div>
+    <div id="response-error" ng-show="removed">
+        <div class="alert alert-success text-center">
+            {{goal.name}} has been removed,
+            <a href="/app/home">return to the home page</a>
         </div>
     </div>
 </div>

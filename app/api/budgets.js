@@ -3,7 +3,22 @@ var api = {};
 var model = mongoose.model('Budget');
 
 api.create = function (req, res) {
+    var budget = req.body;
+    budget.goalId = req.params.goalId;
 
+    model.create(budget).then(function (budget) {
+        res.status(201).json(budget);
+    }, function (error) {
+        res.status(500).json(error);
+    });
+};
+
+api.removeBudgets = function (req, res) {
+    model.remove({ goalId: req.params.id }).then(function () {
+        res.sendStatus(204);
+    }, function (error) {
+        res.status(500).json(error);
+    });
 };
 
 api.getAll = function (req, res) {
@@ -15,7 +30,11 @@ api.getAll = function (req, res) {
 };
 
 api.remove = function (req, res) {
-
+    model.remove({ _id: req.params.id }).then(function () {
+        res.sendStatus(204);
+    }, function (error) {
+        res.status(500).json(error);
+    });
 };
 
 api.getById = function (req, res) {

@@ -2,15 +2,18 @@
 <main role="main" class="container">
 
     <div class="goals-template">
-        <h2>Creating a Goal</h2>
+        <h2>Creating a Budget For Goal: {{goal.name}}</h2>
 
         <form class="mt-4" ng-submit="submit()" ng-show="!isSuccess">
+
             <div class="form-group">
-                <label for="goal-name">Name</label>
-                <input ng-model="goal.name" type="text" class="form-control" id="goal-name" placeholder="Goal Name" required autofocus>
+                <label for="budget-description">Description</label>
+                <input ng-model="budget.description" type="text" class="form-control" id="budget-description" placeholder="Budget Description"
+                    required autofocus>
             </div>
+
             <div class="form-group">
-                <label for="target-date">Target Date</label>
+                <label for="expected-date">Expected Date</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -19,12 +22,13 @@
                             </span>
                         </div>
                     </div>
-                    <input ng-model="goal.targetDate" type="text" class="form-control" id="target-date" placeholder="Desired Date For Achieving The Goal"
+                    <input ng-model="budget.expectedDate" type="text" class="form-control" id="expected-date" placeholder="Date When You Will Receive This Amount"
                         required>
                 </div>
             </div>
+
             <div class="form-group">
-                <label for="total-cost">Total Cost</label>
+                <label for="amount">Amount</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -33,17 +37,27 @@
                             </span>
                         </div>
                     </div>
-                    <input ng-model="goal.totalCost" type="text" class="form-control" id="total-cost" placeholder="Total Cost Of This Goal" required>
+                    <input ng-model="budget.amount" type="text" class="form-control" id="amount" placeholder="Amount That You Will Receive" required>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="budget-status">Status</label>
+                <select ng-model="budget.status" class="form-control" id="budget-status" required>
+                    <option value="0" selected>Expected</option>
+                    <option value="1">Received</option>
+                </select>
+            </div>
+
             <ul class="nav justify-content-end my-4">
                 <li class="nav-item">
                     <button ng-click="cancel()" type="button" class="btn btn-secondary mx-2">Cancel</button>
                 </li>
                 <li class="nav-item">
-                    <button type="submit" class="btn btn-primary ml-2">Create Goal</button>
+                    <button type="submit" class="btn btn-primary ml-2">Create Budget</button>
                 </li>
             </ul>
+
         </form>
 
     </div>
@@ -60,23 +74,22 @@
         </div>
         <div>
             <p class="mx-5 my-5">
-                <strong>Congratulations</strong>, you just create a new goal, now you can
-                <a href="/app/home">go to the home page</a> or
-                <a href="/app/goals/{{goal._id}}/budgets/create">create a new budget</a> for this goal.
+                <strong>Congratulations</strong>, you just create a new budget for goal '{{goal.name}}', now you can
+                <a href="/app/goals/{{goal._id}}">go to this goal page</a>.
             </p>
         </div>
     </div>
 </div>
 <script>
     $(document).ready(function () {
-        //masking targer date input
-        $('#target-date').datepicker({
+        //masking expected date input
+        $('#expected-date').datepicker({
             orientation: "bottom auto",
             autoclose: true,
             todayHighlight: true
         });
 
-        //masking total cost input
-        $('#total-cost').mask("#.##0,00", { reverse: true });
+        //masking amount input
+        $('#amount').mask("#.##0,00", { reverse: true });
     });
 </script>

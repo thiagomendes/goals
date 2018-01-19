@@ -2,11 +2,13 @@ module.exports = function (app) {
 
     var api = app.api.budgets;
 
-    app.get('/api/:goalId/budgets', api.getAll);
+    app.delete('/api/goals/:id/remove_budgets', api.removeBudgets);
 
-    app.post('/api/budgets', api.create);
+    app.route('/api/goals/:goalId/budgets')
+        .get(api.getAll)
+        .post(api.create);
 
-    app.route('/api/budgets/:id')
+    app.route('/api/goals/:goalId/budgets/:id')
         .get(api.getById)
         .put(api.update)
         .delete(api.remove);
