@@ -29,6 +29,11 @@ angular.module('goals', ['ngRoute'])
             controller: 'CreateBudgetController'
         });
 
+        $routeProvider.when('/app/goals/:id/budgets/:budgetId/edit', {
+            templateUrl: 'partials/create-budget.html',
+            controller: 'EditBudgetController'
+        });
+
         $routeProvider.when('/app/404', {
             templateUrl: 'partials/404.html',
             controller: 'HomeController'

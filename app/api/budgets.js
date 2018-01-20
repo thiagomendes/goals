@@ -38,11 +38,27 @@ api.remove = function (req, res) {
 };
 
 api.getById = function (req, res) {
-
+    model.findById(req.params.id).then(function (budget) {
+        if (!budget) {
+            res.sendStatus(404);
+        } else {
+            res.status(200).json(budget);
+        }
+    }, function (error) {
+        res.status(500).json(error);
+    });
 };
 
 api.update = function (req, res) {
-
+    model.findByIdAndUpdate(req.params.id, req.body).then(function (budget) {
+        if (!budget) {
+            res.sendStatus(404);
+        } else {
+            res.status(200).json(budget);
+        }
+    }, function (error) {
+        res.status(500).json(error);
+    });
 };
 
 module.exports = api;

@@ -17,9 +17,6 @@ angular.module('goals')
         });
 
         $scope.submit = function () {
-            $scope.budget.amount = $scope.budget.amount.replace('.', '');
-            $scope.budget.amount = $scope.budget.amount.replace(',', '.');
-
             $http.post('/api/goals/' + $routeParams.id + '/budgets', $scope.budget).success(function (response) {
                 $scope.budget = response;
                 $scope.isSuccess = true;

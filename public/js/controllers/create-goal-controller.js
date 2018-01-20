@@ -11,11 +11,7 @@ angular.module('goals')
         };
 
         $scope.submit = function () {
-
-            $scope.goal.totalCost = $scope.goal.totalCost.replace('.', '');
-            $scope.goal.totalCost = $scope.goal.totalCost.replace(',', '.');
             $scope.goal.createDate = new Date();
-
             $http.post('/api/goals', $scope.goal).success(function (response) {
                 $scope.message = "Successfully created goal";
                 $scope.isSuccess = true;
