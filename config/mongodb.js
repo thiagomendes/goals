@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/goalsdb');
+mongoose.connect('mongodb://goal-db-service/goalsdb');
 
 mongoose.connection.on('connected', function () {
     console.log("MongoDB Connected");

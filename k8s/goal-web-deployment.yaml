@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goal-web-deployment
+  labels:
+    app: goal-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goal-web
+  template:
+    metadata:
+      labels:
+        app: goal-web
+    spec:
+      containers:
+      - name: goal-web
+        image: goal-web
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: goal-db-service
+spec:
+  selector:
+    app: goal-db
+  ports:
+    - name: tcp
+      protocol: TCP
+      port: 27017
+      targetPort: 27017 
